@@ -1,73 +1,70 @@
-# React + TypeScript + Vite
+# Droptop - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The React frontend for Droptop, a bookmark manager. This is a learning project focused on connecting a React app to a custom Express backend - an area I had not worked in before, having only used Next.js with Supabase server actions previously.
 
-Currently, two official plugins are available:
+> Inspired by [Raindrop.io](https://raindrop.io). Built from scratch.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## What I learned building this
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Coming from Next.js, the frontend/backend split was new territory. Next.js abstracts a lot of this away. Building it manually taught me what was actually happening.
 
-## Expanding the ESLint configuration
+Key concepts I worked through:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Connecting a React app to a separate Express API
+- Why CORS exists and how to handle it
+- Storing and sending JWT tokens from the client
+- Building protected and public routes with React Router
+- Managing state across parent and child components with callbacks
+- Fetching data on load with `useEffect` and optional query params
+- Inline editing patterns in React
+- Abstracting API calls into a dedicated `api/` layer
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Tech Stack
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- **Framework:** React + Vite
+- **Language:** TypeScript
+- **Routing:** React Router
+- **Styling:** Tailwind CSS + shadcn/ui
+- **HTTP:** Native fetch API
+
+---
+
+## Features
+
+- Register and login with JWT auth
+- Save bookmarks with title, description, URL, image URL, and tags
+- Filter bookmarks by tag
+- Edit bookmarks inline
+- Delete bookmarks
+- Protected routes - unauthenticated users are redirected to login
+- Public routes - logged in users are redirected away from login/register
+
+---
+
+## Running Locally
+
+This app requires the [droptop-backend](https://github.com/yourusername/droptop-backend) to be running first.
+
+```bash
+git clone https://github.com/yourusername/droptop-frontend
+cd droptop-frontend
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+App runs on `http://localhost:5173`
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+---
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Project Status
+
+Work in progress. Core functionality is complete. Planned improvements:
+
+- [ ] Better error handling and loading states
+- [ ] Drag to reorder bookmarks
+- [ ] Collections/folders
+- [ ] Full parity with Raindrop.io features
