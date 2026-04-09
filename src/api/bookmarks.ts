@@ -42,8 +42,8 @@ export async function createBookmark(
 
 export async function updateBookmark(
   id: string,
-  description: string,
   title: string,
+  description: string,
   bookmarkUrl: string,
   imageURL: string,
   tags: string[],

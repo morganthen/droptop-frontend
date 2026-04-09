@@ -31,53 +31,51 @@ export default function Register() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50">
-      <Card className="w-full max-w-md shadow-sm">
-        <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl font-semibold text-gray-800">
+    <div className="min-h-screen flex items-center justify-center bg-background">
+      <Card className="w-full max-w-md shadow-sm border border-border">
+        <CardHeader className="space-y-1 text-center">
+          <div className="text-3xl mb-1">🔖</div>
+          <CardTitle className="text-2xl font-semibold text-foreground">
             Create an account
           </CardTitle>
-          <p className="text-sm text-gray-500">Start saving your bookmarks</p>
+          <p className="text-sm text-muted-foreground">
+            Start saving your bookmarks
+          </p>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleRegister} className="space-y-4">
             {error && (
-              <p className="text-sm text-red-500 bg-red-50 px-3 py-2 rounded-md">
+              <p className="text-sm text-destructive bg-destructive/10 px-3 py-2 rounded-md">
                 {error}
               </p>
             )}
             <div className="space-y-1">
-              <Label htmlFor="email" className="text-gray-700">
-                Email
-              </Label>
+              <Label htmlFor="email">Email</Label>
               <Input
                 id="email"
                 type="email"
                 placeholder="you@example.com"
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setEmail(e.target.value)
-                }
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
             <div className="space-y-1">
-              <Label htmlFor="password" className="text-gray-700">
-                Password
-              </Label>
+              <Label htmlFor="password">Password</Label>
               <Input
                 id="password"
                 type="password"
                 placeholder="••••••••"
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setPassword(e.target.value)
-                }
+                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
             <Button type="submit" className="w-full">
               Sign Up
             </Button>
-            <p className="text-sm text-center text-gray-500">
+            <p className="text-sm text-center text-muted-foreground">
               Already have an account?{" "}
-              <Link to="/login" className="text-blue-600 hover:underline">
+              <Link
+                to="/login"
+                className="text-primary hover:text-primary/80 underline-offset-4 hover:underline"
+              >
                 Log in
               </Link>
             </p>
